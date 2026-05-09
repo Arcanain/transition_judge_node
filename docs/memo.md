@@ -1,10 +1,10 @@
 
 # 作業めも
 
-
+- https://github.com/Arcanain/transition_judge_node/blob/main/docs/memo.md
 
 ## 複数のLifecycleNodeがある時の実装テスト 
-branch: https://github.com/shiryu-nakano/transition_recipe_test/tree/develop/applicate_multiple_nodes
+branch: https://github.com/shiryu-nakano/transition_judge_node/tree/develop/applicate_multiple_nodes
 
 ### チェックリスト
 
@@ -73,20 +73,40 @@ branch: https://github.com/shiryu-nakano/transition_recipe_test/tree/develop/app
 
 ---
 
-**現状整理（2026-05-09）**
+### 現状整理（2026-05-09）
 - 2つのリポジトリがある
   - それぞれ違う目的、違う機能があるが、最終的に一つにまとめる予定
-- [ ] このリポジトリで提供できる機能を確認する
+- [X] ~~*このリポジトリで提供できる機能を確認する*~~ [2026-05-10]
   - graphを用いた状態管理
     - graphの実態はdict[string:state_id：semanticState]
     - lifecycle clientによってtimerでそれぞれのnodeの状態を取得して、semantic stateを作る
     - 
-- [ ] もう一つのリポジトリで提供する機能を確認する
+- [X] ~~*もう一つのリポジトリで提供する機能を確認する*~~ [2026-05-10]
+  - → 状態遷移の判定をおこなう機能を実装しようとしていた．CORとstrategyをつかっていた．
+  - 実装がもう一つのものとコンフリクトするので，
 - [X] 最終目的を確認する
   - graphで状態管理。それぞれのノードが状態で、エッジが状態遷移
     - lifecycleと通信して管理対象ノードの状態を監視する部分 
       - 現在は
     - 外界情報をサブスクライブして状態遷移の判定を行う部分
+
+**やること（2026-05-10）**
+- 判定ロジックを整理する
+- forkしたリポジトリで，開発の準備をする
+  - forkしたリポジトリを実行して問題ないことを確認する
+
+- 状態判定の実装について
+  - A1:
+  - A2:
+- COR+Strategyの実装を行う
+  - 状態遷移判定自体
+
+- demo用にまとめる/モジュールごとにまとめる
+  - [X] ~~*launch/demo_launch.pyに移動する*~~ [2026-05-10]
+  - [X] ~~*graph/に関係ファイルを移動させてビルド，実行テストする*~~ [2026-05-10]
+  - [ ] multiple_node_managerもdemo用に
+
+
 
 **gnss-emcl用の拡張→branch:develop/area_state_switch**
 - [ ] gnss, emclノードを使ったlaunchファイルの作成
@@ -96,11 +116,12 @@ branch: https://github.com/shiryu-nakano/transition_recipe_test/tree/develop/app
     - gnss→emcl→gnss→emcl→gnssと遷移することが予め決まっている
     - 実際は．．．
       - STATE_ALL_UNCONFIGURED→STATE_ALL_OFF→ (ここから開始)
-      GNSS_ONLY→EMCL_ONLY→GNSS_ONLY→EMCL_ONLY→GNSS_ONLY
-      となる
+      - GNSS_ONLY→EMCL_ONLY→GNSS_ONLY→EMCL_ONLY→GNSS_ONLY
+        - となる
 - [ ] P4:Areaの情報をpublishする→経路計画用管理のノードがこれをみて判断に使うと思われる
   - [ ] topic echoでこのトピック監視して正しいことを確認する．
 - [ ] ここまででとりあえずタスクPは完了
+
 
 **preliminary**
 * [ ] gnss, emclがそれぞれlifecycleで普通に動くかどうかが怪しい．
@@ -131,7 +152,7 @@ branch: https://github.com/shiryu-nakano/transition_recipe_test/tree/develop/app
 <details><summary>bash</summary>
 
 ```bash
-ubuntu@dff5a6f80385:~/ros2_ws$ ros2 launch transition_recipe_test test_multiple_target.launch.py
+ubuntu@dff5a6f80385:~/ros2_ws$ ros2 launch transition_judge_node test_multiple_target.launch.py
 [INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2025-11-24-11-48-51-022423-dff5a6f80385-3158
 [INFO] [launch]: Default logging verbosity is set to INFO
 [INFO] [a_node-1]: process started with pid [3159]
@@ -271,13 +292,13 @@ namespace local_planning_manager
 - 状態遷移の最小限の実験結果
 
 <details><summary>bash</summary>
-ubuntu@dff5a6f80385:~/ros2_ws$ colcon build --packages-select transition_recipe_test
-Starting >>> transition_recipe_test
-Finished <<< transition_recipe_test [3.32s]                     
+ubuntu@dff5a6f80385:~/ros2_ws$ colcon build --packages-select transition_judge_node
+Starting >>> transition_judge_node
+Finished <<< transition_judge_node [3.32s]                     
 
 Summary: 1 package finished [3.51s]
 ubuntu@dff5a6f80385:~/ros2_ws$ source install/setup.bash
-ubuntu@dff5a6f80385:~/ros2_ws$ ros2 launch transition_recipe_test test_multiple_target.launch.py
+ubuntu@dff5a6f80385:~/ros2_ws$ ros2 launch transition_judge_node test_multiple_target.launch.py
 [INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2025-11-24-15-46-16-321936-dff5a6f80385-7514
 [INFO] [launch]: Default logging verbosity is set to INFO
 [INFO] [a_node-1]: process started with pid [7515]
@@ -294,7 +315,7 @@ ubuntu@dff5a6f80385:~/ros2_ws$ ros2 launch transition_recipe_test test_multiple_
 [multiple_node_manager-4] [INFO] [1763999176.458803506] [multiple_node_manager]: Created ChangeState and GetState clients for node 'A_node'
 [multiple_node_manager-4] [INFO] [1763999176.460435757] [multiple_node_manager]: Created ChangeState and GetState clients for node 'B_node'
 [multiple_node_manager-4] [INFO] [1763999176.460742466] [multiple_node_manager]: Created ChangeState and GetState clients for node 'C_node'
-[multiple_node_manager-4] [INFO] [1763999176.460748007] [multiple_node_manager]: Loading state graph from YAML: /home/ubuntu/ros2_ws/install/transition_recipe_test/share/transition_recipe_test/config/state_graph.yaml
+[multiple_node_manager-4] [INFO] [1763999176.460748007] [multiple_node_manager]: Loading state graph from YAML: /home/ubuntu/ros2_ws/install/transition_judge_node/share/transition_judge_node/config/state_graph.yaml
 [multiple_node_manager-4] [INFO] [1763999176.462590050] [multiple_node_manager]: State graph initialized with 9 states.
 [multiple_node_manager-4] [INFO] [1763999176.462876009] [multiple_node_manager]: MultipleNodeManager started
 [multiple_node_manager-4] [WARN] [1763999176.964736812] [multiple_node_manager]: [StateGraph] no match for current SemanticState
