@@ -90,7 +90,7 @@ branch: https://github.com/shiryu-nakano/transition_judge_node/tree/develop/appl
       - 現在は
     - 外界情報をサブスクライブして状態遷移の判定を行う部分
 
-**やること（2026-05-10）**
+### やること（2026-05-10）
 - 判定ロジックを整理する
 - forkしたリポジトリで，開発の準備をする
   - forkしたリポジトリを実行して問題ないことを確認する
