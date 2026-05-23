@@ -90,14 +90,14 @@ branch: https://github.com/shiryu-nakano/transition_judge_node/tree/develop/appl
       - 現在は
     - 外界情報をサブスクライブして状態遷移の判定を行う部分
 
-### やること（2026-05-10）
+##　現状整理（2026-05-22 ）
 - 判定ロジックを整理する
-- forkしたリポジトリで，開発の準備をする
-  - forkしたリポジトリを実行して問題ないことを確認する
+- [X] ~~*forkしたリポジトリで，開発の準備をする*~~ [2026-05-23 13:42]
+  - [X] ~~*forkしたリポジトリを実行して問題ないことを確認する*~~ [2026-05-23 13:42]
 
 - 状態判定の実装について
-  - A1:
-  - A2:
+  - A1: 
+  - A2: 　
 - COR+Strategyの実装を行う
   - 状態遷移判定自体
 
@@ -105,8 +105,13 @@ branch: https://github.com/shiryu-nakano/transition_judge_node/tree/develop/appl
   - [X] ~~*launch/demo_launch.pyに移動する*~~ [2026-05-10]
   - [X] ~~*graph/に関係ファイルを移動させてビルド，実行テストする*~~ [2026-05-10]
   - [ ] multiple_node_managerもdemo用に
+    - [ ] これもインターフェースを実装したものにして，本番用もこれを実装できるようにしたい．
 
-
+**pure-pursuit/dwaの単一のlaunchをセットアップする**
+- 作るもの
+  - dwa/p.p.を呼び出して起動する
+  - ppではpath を出さなければならないので注意すること
+  - 
 
 **gnss-emcl用の拡張→branch:develop/area_state_switch**
 - [ ] gnss, emclノードを使ったlaunchファイルの作成

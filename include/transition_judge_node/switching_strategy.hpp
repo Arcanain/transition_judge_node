@@ -16,7 +16,7 @@ public:
     /// 状態遷移の判定だけを行う純粋ロジック
     ///
     /// @param current_state_id  Graph から得られた現在のシステム状態ID
-    /// @param phase             フェーズカウンタ（元の temp_count_）。遷移したら内部で更新される（in/out）
+    /// @param phase             状態遷移判定の戦略切り替えフラグ
     /// @param since_last        前回遷移からの経過秒数
     /// @param x                 現在位置 x
     /// @param y                 現在位置 y
