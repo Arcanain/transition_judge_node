@@ -4,9 +4,9 @@
 #include <unordered_map>
 #include <optional>
 
-#include "transition_recipe_test/common_types.hpp"  // SemanticState
+#include "transition_judge_node/common_types.hpp"  // SemanticState
 
-namespace transition_recipe_test
+namespace transition_judge_node
 {
 
 class Graph
@@ -29,4 +29,4 @@ private:
     std::unordered_map<std::string, SemanticState> state_dictionary_;
 };
 
-} // namespace transition_recipe_test
+} // namespace transition_judge_node

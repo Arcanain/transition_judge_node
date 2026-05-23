@@ -1,14 +1,14 @@
-// transition_recipe_test/switching_strategy.hpp
+// transition_judge_node/switching_strategy.hpp
 #pragma once
 
-#include "transition_recipe_test/recipe_generator.hpp"
-#include "transition_recipe_test/common_types.hpp"
+#include "transition_judge_node/recipe_generator.hpp"
+#include "transition_judge_node/common_types.hpp"
 
 #include <optional>
 #include <cmath>    // std::hypot
 #include <string>
 
-namespace transition_recipe_test {
+namespace transition_judge_node {
 
 class SwitchingStrategy
 {
@@ -33,4 +33,4 @@ public:
         std::string &out_target_state) const;
 };
 
-} // namespace transition_recipe_test
+} // namespace transition_judge_node

@@ -11,11 +11,11 @@ from ament_index_python.packages import get_package_share_directory
 
 """
 ArcanainSimulatorを起動するlaunchファイル
-transition_recipe_testのサンプルノードも同時に起動する。
+transition_judge_nodeのサンプルノードも同時に起動する。
 今後実用に向けて拡張予定
 """
 def generate_launch_description():
-    package_name = 'transition_recipe_test'
+    package_name = 'transition_judge_node'
     simulator_package = 'arcanain_simulator'
 
     pkg_share = get_package_share_directory(package_name)
@@ -72,7 +72,7 @@ def generate_launch_description():
         output='screen',
     )
 
-    # transition_recipe_test のノード
+    # transition_judge_node のノード
     a_node = Node(
         package=package_name,
         executable='a_node',

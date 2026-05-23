@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(transition_recipe_test)
+project(transition_judge_node)
 
 # コンパイルオプション
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
@@ -22,7 +22,7 @@ find_package(tf2_geometry_msgs REQUIRED)
 
 
 # ========================================
-# ヘッダを公開（include/transition_recipe_test）
+# ヘッダを公開（include/transition_judge_node）
 # ========================================
 
 # Graph や SemanticState などを使う全ターゲットで共通
@@ -32,8 +32,8 @@ set(PROJECT_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 # graph_lib: ROS 非依存の純粋
 # ========================================
 add_library(graph_lib
-  src/graph.cpp
-  src/graph_generator.cpp
+  src/graph/graph.cpp
+  src/graph/graph_generator.cpp
 )
 target_include_directories(graph_lib PUBLIC
   $<BUILD_INTERFACE:${PROJECT_INCLUDE_DIR}>
@@ -46,8 +46,8 @@ target_link_libraries(graph_lib
 # recipe_library（ROS 非依存）
 # ============================================
 add_library(recipe_lib
-  src/switching_strategy.cpp 
-  src/recipe_generator.cpp
+  src/switching_strategy.cpp
+  src/sample/recipe_generator.cpp
 )
 
 target_include_directories(recipe_lib PUBLIC

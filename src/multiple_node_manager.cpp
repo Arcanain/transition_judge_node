@@ -9,15 +9,15 @@
 #include <string>
 #include <chrono>
 
-#include "transition_recipe_test/common_types.hpp"
-#include "transition_recipe_test/graph.hpp"
-#include "transition_recipe_test/graph_generator.hpp"
-// #include "transition_recipe_test/recipe_generator.hpp"
-#include "transition_recipe_test/switching_strategy.hpp"
+#include "transition_judge_node/common_types.hpp"
+#include "transition_judge_node/graph/graph.hpp"
+#include "transition_judge_node/graph/graph_generator.hpp"
+// #include "transition_judge_node/recipe_generator.hpp"
+#include "transition_judge_node/switching_strategy.hpp"
 
 using namespace std::chrono_literals;
 
-namespace transition_recipe_test
+namespace transition_judge_node
 {
 
     using ChangeState = lifecycle_msgs::srv::ChangeState;
@@ -582,15 +582,15 @@ namespace transition_recipe_test
         }
     };
 
-} // namespace transition_recipe_test
+} // namespace transition_judge_node
 
 // ---- main ----
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
-    // auto node = std::make_shared<transition_recipe_test::RecipeTestNode>();
-    auto node = std::make_shared<transition_recipe_test::MultipleNodeManager>();
+    // auto node = std::make_shared<transition_judge_node::RecipeTestNode>();
+    auto node = std::make_shared<transition_judge_node::MultipleNodeManager>();
     rclcpp::spin(node);
 
     rclcpp::shutdown();

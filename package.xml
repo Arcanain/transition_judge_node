@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>transition_recipe_test</name>
+  <name>transition_judge_node</name>
   <version>0.0.0</version>
   <description>Test package for TransitionRecipe and ActionStep using a sample lifecycle node.</description>
 

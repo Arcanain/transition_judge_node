@@ -12,7 +12,7 @@ Demo実行用launch
 """
 
 def generate_launch_description():
-    pkg_share = get_package_share_directory('transition_recipe_test')
+    pkg_share = get_package_share_directory('transition_judge_node')
     params_file = os.path.join(pkg_share, 'config', 'sample/multiple_nodes.yaml')
 
     # ★ グラフ YAML のデフォルトパス
@@ -28,14 +28,14 @@ def generate_launch_description():
     )
     # simulator のパラメータファイル
     config_file = os.path.join(
-        get_package_share_directory("transition_recipe_test"),
+        get_package_share_directory("transition_judge_node"),
         'config',
         'sample/sim_params.yaml'
     )
     
     # RViz設定ファイルのパス
     rviz_config_file = os.path.join(
-        get_package_share_directory("transition_recipe_test"),
+        get_package_share_directory("transition_judge_node"),
         'rviz',
         'demo.rviz'
     )
@@ -44,7 +44,7 @@ def generate_launch_description():
         graph_yaml_arg,
 
         Node(
-            package="transition_recipe_test",
+            package="transition_judge_node",
             executable='simulator_node',
             name='robot_simulator_node',
             parameters=[config_file],
@@ -52,25 +52,25 @@ def generate_launch_description():
         ),
         
         Node(
-            package='transition_recipe_test',
+            package='transition_judge_node',
             executable='a_node',
             name='A_node',
             output='screen'
         ),
         Node(
-            package='transition_recipe_test',
+            package='transition_judge_node',
             executable='b_node',
             name='B_node',
             output='screen'
         ),
         Node(
-            package='transition_recipe_test',
+            package='transition_judge_node',
             executable='c_node',
             name='C_node',
             output='screen'
         ),
         Node(
-            package='transition_recipe_test',
+            package='transition_judge_node',
             executable='multiple_node_manager',
             name='multiple_node_manager',
             parameters=[

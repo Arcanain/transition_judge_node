@@ -5,7 +5,7 @@
 #include <chrono>
 using namespace std::chrono_literals;
 
-namespace transition_recipe_test
+namespace transition_judge_node
 {
 
   class CNode : public rclcpp_lifecycle::LifecycleNode
@@ -57,12 +57,12 @@ namespace transition_recipe_test
     }
   };
 
-} // namespace transition_recipe_test
+} // namespace transition_judge_node
 
 int main(int argc, char **argv)
 {
   rclcpp::init(argc, argv);
-  auto node = std::make_shared<transition_recipe_test::CNode>();
+  auto node = std::make_shared<transition_judge_node::CNode>();
   rclcpp::spin(node->get_node_base_interface());
   rclcpp::shutdown();
   return 0;
